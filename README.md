@@ -7,3 +7,4 @@ Support: https://discord.gg/cfxdev
 
 
 Follow to get a ``🍪`` 
+https://forum.cfx.re/t/release-free-z-greenzones/5161746
