@@ -1,0 +1,13 @@
+#displayTextContainer {
+    position: absolute; /* Change from relative to absolute */
+    top: 10px; /* Add some top padding */
+    left: 10px; /* Add some left padding */
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    max-width: 300px;
+    padding: 20px;
+    background-color: rgba(5, 5, 5, 0.25);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
