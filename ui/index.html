@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gangshit RZ - Core</title>
+    <script src="https://kit.fontawesome.com/9f69eba8e4.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">  
+    <style>
+        * {
+            font-family: sans-serif;
+        }
+
+        body {
+    color: white;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    position: relative; 
+}
+
+
+
+
+
+#displayTextContainer {
+    position: absolute; /* Absolute positioning */
+    top: 10px; /* Add some top padding */
+    right: 10px; 
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    max-width: 300px;
+    padding: 20px;
+    background-color: rgba(5, 5, 5, 0.25);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+
+
+        .info-box {
+            flex: 1;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 0 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            margin-top: 10px;
+        }
+
+        .discord-link {
+            color: #7289DA;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .discord-link:hover {
+            color: #5682a3;
+        }
+
+        .info-box p {
+            margin-top: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+
+        @keyframes fadeInOut {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        #displayTextContainer.fade-in {
+            animation: fadeInOut 0.5s ease-in;
+        }
+
+        #displayTextContainer.fade-out {
+            animation: fadeInOut 0.5s ease-out;
+        }
+    </style>
+    </head>
+
+<body>
+    <div id="displayTextContainer">
+        <div class="info-container">
+            <div class="info-box">
+                <p style="font-size: 18px; font-weight: bold;"><i class="fa-solid fa-user-ninja"></i> Gangshit RZ</p>
+            </div>
+            <div class="info-box">
+                <p style="color: rgb(0, 249, 0);"><i class="fa-solid fa-shield-alt"></i> You are in a green zone</p>
+            </div>
+        </div>
+        <div class="text" style="font-size: 15px; margin-left: 15px;" id="discordText">Discord: <a class="discord-link" href="https://discord.gg/gangshitrz" target="_blank"><i class="fab fa-discord"></i> discord.gg/gangshitrz</a></div>
+
+    </div>
+   
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            window.addEventListener('message', function (event) {
+                var data = event.data;
+                if (data && data.type === 'displayText') {
+                    if (data.display) {
+                        document.getElementById('displayTextContainer').style.display = 'block';
+                        displayTextContainer.classList.remove('fade-out');
+                        displayTextContainer.classList.add('fade-in');
+
+                        document.body.style.overflow = 'hidden'; // Prevent player from scrolling while UI is open
+                    } else {
+                        document.getElementById('displayTextContainer').style.display = 'none';
+                        document.body.style.overflow = 'auto'; // Restore scrolling when UI is closed
+                        displayTextContainer.classList.remove('fade-in'); 
+                        displayTextContainer.classList.add('fade-out'); 
+                        setTimeout(function () {
+                            displayTextContainer.style.display = 'none';
+                            document.body.style.overflow = 'auto'; // Restore scrolling when UI is closed
+                        }, 500);
+                    }
+                }
+            });
+        });
+// set the message off of locations.lua
+        document.addEventListener('DOMContentLoaded', function () {
+    window.addEventListener('message', function (event) {
+        var data = event.data;
+        if (data && data.type === 'displayText') {
+            if (data.display) {
+                document.querySelector('.info-box p').innerHTML = '<i class="fa-solid fa-user-ninja"></i> ' + data.gangshitrzText;
+                document.querySelector('#discordText').innerHTML = 'Discord: <a class="discord-link" href="https://discord.gg/cfxdev" target="_blank"><i class="fab fa-discord"></i> ' + data.discordText + '</a>';
+                
+                document.getElementById('displayTextContainer').style.display = 'block';
+                displayTextContainer.classList.remove('fade-out');
+                displayTextContainer.classList.add('fade-in');
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.getElementById('displayTextContainer').style.display = 'none';
+                document.body.style.overflow = 'auto';
+                displayTextContainer.classList.remove('fade-in');
+                displayTextContainer.classList.add('fade-out');
+                setTimeout(function () {
+                    displayTextContainer.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }, 500);
+            }
+        }
+    });
+});
+    </script>
+</body>
+</html>
