@@ -38,7 +38,7 @@ end
 Citizen.CreateThread(function()
     while true do
         Citizen.Wait(1000)
-        playerPed = GetPlayerPed(-1)
+        playerPed = PlayerId()
         local playerCoords = GetEntityCoords(playerPed)
         local nearestLocation = nil
         local nearestDistance = nil
